@@ -1,0 +1,73 @@
+
+// CPP program to generate power set
+#include <bits/stdc++.h>
+using namespace std;
+
+// str : Stores input string
+// curr : Stores current subset
+// index : Index in current subset, curr
+void powerSet(string str, int index = 0,
+              string curr = "")
+{
+    int n = str.length();
+
+    // base case
+    if (index == n) {
+        cout << curr << endl;
+        return;
+    }
+
+    // Two cases for every character
+    // (i) We consider the character
+    // as part of current subset
+    // (ii) We do not consider current
+    // character as part of current
+    // subset
+    powerSet(str, index + 1, curr + str[index]);
+    powerSet(str, index + 1, curr);
+}
+
+// Driver code
+int main()
+{
+    string str = "abc";
+    powerSet(str);
+    return 0;
+}
+
+
+
+
+
+// C++ program to print all 
+// permutations with duplicates allowed 
+#include <bits/stdc++.h>
+using namespace std;
+
+/* Function to print permutations of string 
+This function takes three parameters: 
+1. String 
+2. Starting index of the string 
+3. Ending index of the string. */
+void permute(string &str, int l, int r) 
+{ 
+    if (l == r) 
+        cout << str << " "; 
+    else
+    { 
+        for (int i = l; i <= r; i++) 
+        { 
+            swap(str[l], str[i]); 
+            permute(str, l+1, r); 
+            swap(str[l], str[i]); 
+        } 
+    } 
+} 
+
+/* Driver program to test above functions */
+int main() 
+{ 
+    string str = "ABC";
+    permute(str, 0, str.length()-1); 
+    return 0; 
+} 
