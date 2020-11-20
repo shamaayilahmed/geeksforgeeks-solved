@@ -122,8 +122,34 @@ void reverse(Node* head)
     }
     head = prev 
 }
-Two Pointers Solution : We will be using auxiliary two pointers current and next to reverse the links of the linked list. This is little bit tricky solution. Try out with examples-
 
-Pseudo Code
-void reverse(Node* head) 
+recursive reverse
+Node* reverse(Node* node) 
 {
+    if (node == NULL) :
+        return NULL
+    if (node->next == NULL) :
+        head = node
+        return node
+    Node* temp = reverse(node->next)
+    temp->next = node 
+    node->next = NULL 
+    return node
+}
+
+
+DETECT LOOP
+
+bool detectloop(Node* head) 
+{
+    Node *slow_p = head, *fast_p = head
+  
+    while (slow_p && fast_p && fast_p->next) 
+    {
+        slow_p = slow_p->next
+        fast_p = fast_p->next->next
+        if (slow_p == fast_p) 
+            return true 
+    }
+    return false  
+}
